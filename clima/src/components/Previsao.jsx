@@ -1,15 +1,20 @@
-const Previsao = () => {
+const Previsao = ({ propPrevisao }) => {
   return (
     <div>
-      <h4>Previsão para as próximas horas</h4>
+      <h4>Forecast for the next few hours</h4>
       <ul>
-        <li>
-          <img src="" alt="" />
-          °C - descrição
+        {propPrevisao.map((Previsao) => (                    
+        <li previsao={Previsao.dt}>
+          <img 
+            src={`http://openweathermap.org/img/wn/${Previsao.weather[0].icon}.png`} 
+            alt={Previsao.weather[0].description}
+          />
+            {Previsao.main.temp}°C - {Previsao.weather[0].description}
         </li>
+        ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export default Previsao
