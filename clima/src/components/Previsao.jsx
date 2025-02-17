@@ -1,20 +1,37 @@
-const Previsao = ({ propPrevisao }) => {
+import PropTypes from "prop-types";
+import { PrevisaoContainer } from "./PrevisaoStyles";
+
+const Previsao = ({ propsPrevisao }) => {
   return (
-    <div>
-      <h4>Forecast for the next few hours</h4>
+    <PrevisaoContainer>
+      <h4>Previsão para as próximas horas</h4>
       <ul>
-        {propPrevisao.map((Previsao) => (                    
-        <li previsao={Previsao.dt}>
-          <img 
-            src={`http://openweathermap.org/img/wn/${Previsao.weather[0].icon}.png`} 
-            alt={Previsao.weather[0].description}
-          />
-            {Previsao.main.temp}°C - {Previsao.weather[0].description}
-        </li>
+        {propsPrevisao.map((previsao) => (                    
+          <li key={previsao.dt}> 
+            <img 
+              src={`http://openweathermap.org/img/wn/${previsao.weather[0].icon}.png`} 
+              alt={previsao.weather[0].description}
+            />
+            {previsao.main.temp}°C - {previsao.weather[0].description}
+          </li>
         ))}
       </ul>
-    </div>
+    </PrevisaoContainer>
   );
 };
 
-export default Previsao
+Previsao.propTypes = {
+  propsPrevisao: PropTypes.arrayOf(PropTypes.shape({
+    dt: PropTypes.number.isRequired,
+    main: PropTypes.shape({
+      temp: PropTypes.number.isRequired
+    }).isRequired,
+    weather: PropTypes.arrayOf(PropTypes.shape({
+      icon: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })).isRequired
+  })).isRequired
+};
+
+export default Previsao;
+

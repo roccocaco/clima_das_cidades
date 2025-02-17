@@ -1,4 +1,4 @@
-# Weather Conditions App
+# Clima das cidades
 
 Este é um aplicativo simples de previsão do tempo desenvolvido em React, utilizando a API do OpenWeatherMap para exibir as condições climáticas atuais e a previsão para os próximos dias.
 
